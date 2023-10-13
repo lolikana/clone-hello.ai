@@ -5,7 +5,7 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
 	integrations: [react()],
 	build: {
-		inlineStylesheets: 'auto'
+		inlineStylesheets: 'never'
 	},
 	vite: {
 		css: {
