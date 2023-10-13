@@ -1,0 +1,17 @@
+@media (prefers-color-scheme: dark) {
+	html {
+		--theme: dark;
+	}
+}
+
+html[data-theme='dark'] {
+	--theme: dark;
+}
+
+/* Attach dark mode styles */
+@container style(--theme: dark) {
+	body {
+		background-color: $__sub;
+		color: $__main;
+	}
+}
