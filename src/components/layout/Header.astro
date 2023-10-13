@@ -1,0 +1,31 @@
+---
+import Logo from '@assets/corp__logo.svg';
+import { Image } from 'astro:assets';
+---
+
+<header class="header active">
+	<div>
+		<Image src={Logo} alt="Logo of the company Hello" />
+	</div>
+</header>
+
+<style lang="scss">
+	.header {
+		z-index: 999;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: $__headerMobile;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-inline: 5vw;
+	}
+
+	@media screen and (min-width: 768px) {
+		.header {
+			height: $__headerDesktop;
+		}
+	}
+</style>
