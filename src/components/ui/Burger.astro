@@ -36,8 +36,12 @@
 	}
 
 	.menu-btn {
-		width: 50px;
-		height: 50px;
+		width: 40px;
+		height: 30px;
+		@include mq('sm') {
+			width: 50px;
+			height: 50px;
+		}
 	}
 
 	.menu-btn__burger {
@@ -82,16 +86,22 @@
 	}
 
 	.menu-btn__burger::before {
-		translate: 0 -11px;
+		translate: 0 -9px;
 		@include mq('sm') {
 			translate: 0 -14px;
+		}
+		@include mq('md') {
+			translate: 0 -11px;
 		}
 	}
 
 	.menu-btn__burger::after {
-		translate: 0 11px;
+		translate: 0 9px;
 		@include mq('sm') {
 			translate: 0 14px;
+		}
+		@include mq('md') {
+			translate: 0 11px;
 		}
 	}
 
@@ -106,28 +116,31 @@
 	/* transform the burger to a X */
 	.menu-btn.open .menu-btn__burger::before {
 		rotate: 25deg;
+		@include mq('sm') {
+			rotate: 35deg;
+		}
+		@include mq('md') {
+			rotate: 25deg;
+		}
 	}
 	.menu-btn.open .menu-btn__burger::after {
 		rotate: -25deg;
+		@include mq('sm') {
+			rotate: -35deg;
+		}
+		@include mq('md') {
+			rotate: -25deg;
+		}
 	}
 	/* Burger Animation END */
 	/* Burger END */
 
 	.menu-btn:not(.open):hover {
 		.menu-btn__burger::before {
-			animation: 350ms slide-line 100ms forwards ease-out;
+			animation: 350ms expandWidth 100ms forwards ease-out;
 		}
 		.menu-btn__burger::after {
-			animation: 250ms slide-line 200ms forwards ease-out;
-		}
-	}
-
-	@keyframes slide-line {
-		from {
-			width: 0;
-		}
-		to {
-			width: 100%;
+			animation: 250ms expandWidth 200ms forwards ease-out;
 		}
 	}
 </style>
