@@ -30,9 +30,9 @@ import Header from '@components/layout/Header.astro';
 
 	.section-line.out::after {
 		opacity: 0;
-		top: -$__headerMobile;
+		top: -$__header_heightMobile;
 		@include mq('md') {
-			top: -$__headerDesktop;
+			top: -$__header_heightDesktop;
 		}
 		transition:
 			top 750ms ease,

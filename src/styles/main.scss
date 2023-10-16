@@ -23,10 +23,10 @@ body {
 }
 
 main {
-	padding-top: $__headerMobile;
+	padding-top: $__header_heightMobile;
 	transition: padding-top $__header_heightTransition ease;
 	@include mq('md') {
-		padding-top: $__headerDesktop;
+		padding-top: $__header_heightDesktop;
 	}
 	height: 120vh;
 }
