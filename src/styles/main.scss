@@ -24,6 +24,7 @@ body {
 
 main {
 	padding-top: $__headerMobile;
+	transition: padding-top $__header_heightTransition ease;
 	@include mq('md') {
 		padding-top: $__headerDesktop;
 	}

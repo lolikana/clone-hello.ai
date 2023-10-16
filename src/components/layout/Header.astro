@@ -23,11 +23,15 @@ import { Image } from 'astro:assets';
 		align-items: center;
 		justify-content: space-between;
 		padding-inline: 5vw;
+		transition:
+			height $__header_heightTransition ease,
+			padding-inline calc($__header_heightTransition + 400ms) ease;
 	}
 
 	@media screen and (min-width: 768px) {
 		.header {
 			height: $__headerDesktop;
+			padding-inline: 40px;
 		}
 	}
 </style>
