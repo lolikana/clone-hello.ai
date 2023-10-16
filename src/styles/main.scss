@@ -21,3 +21,24 @@ body {
 	min-width: $__minScreen;
 	max-width: $__maxScreen;
 }
+
+main {
+	padding-top: $__headerMobile;
+	@include mq('md') {
+		padding-top: $__headerDesktop;
+	}
+	height: 120vh;
+}
+
+.section-line {
+	position: relative;
+	&::after {
+		content: '';
+		height: 1px;
+		width: 100vw;
+		background-color: $__primary;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+	}
+}

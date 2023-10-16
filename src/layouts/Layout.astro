@@ -1,5 +1,7 @@
 ---
 import './../styles/main.scss';
+
+import Header from '@components/layout/Header.astro';
 ---
 
 <html lang="en">
@@ -11,6 +13,40 @@ import './../styles/main.scss';
 		<title>Astro</title>
 	</head>
 	<body>
-		<slot />
+		<Header />
+		<main>
+			<div class="section-line top-line"></div>
+			<slot />
+		</main>
 	</body>
 </html>
+
+<style lang="scss">
+	.section-line::after {
+		top: 0;
+		opacity: 1;
+		transition: top 750ms ease;
+	}
+
+	.section-line.out::after {
+		opacity: 0;
+		top: -$__headerMobile;
+		@include mq('md') {
+			top: -$__headerDesktop;
+		}
+		transition:
+			top 750ms ease,
+			750ms opacity 1ms ease;
+	}
+</style>
+
+<script>
+	const sectionLine = document.querySelector('.section-line.top-line') as HTMLDivElement;
+	window.addEventListener('scroll', () => {
+		const scrollY = window.scrollY;
+		if (scrollY >= 20) return;
+		scrollY === 0
+			? sectionLine.classList.remove('out')
+			: sectionLine.classList.add('out');
+	});
+</script>
