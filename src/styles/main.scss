@@ -36,7 +36,7 @@ main {
 	&::after {
 		content: '';
 		height: 1px;
-		width: 100vw;
+		width: 100%;
 		background-color: $__primary;
 		position: absolute;
 		left: 0;
