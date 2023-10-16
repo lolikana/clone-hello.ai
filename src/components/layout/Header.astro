@@ -5,7 +5,7 @@ import { Image } from 'astro:assets';
 ---
 
 <header class="header active">
-	<div>
+	<div class="header__logo">
 		<Image src={Logo} alt="Logo of the company Hello" />
 	</div>
 	<Burger />
@@ -28,10 +28,19 @@ import { Image } from 'astro:assets';
 			padding-inline calc($__header_heightTransition + 400ms) ease;
 	}
 
+	.header__logo {
+		width: 70px;
+		transition: width $__header_heightTransition;
+	}
+
 	@media screen and (min-width: 768px) {
 		.header {
 			height: $__header_heightDesktop;
 			padding-inline: 40px;
+		}
+
+		.header__logo {
+			width: 90px;
 		}
 	}
 </style>
