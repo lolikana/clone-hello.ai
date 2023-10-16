@@ -112,4 +112,22 @@
 	}
 	/* Burger Animation END */
 	/* Burger END */
+
+	.menu-btn:not(.open):hover {
+		.menu-btn__burger::before {
+			animation: 350ms slide-line 100ms forwards ease-out;
+		}
+		.menu-btn__burger::after {
+			animation: 250ms slide-line 200ms forwards ease-out;
+		}
+	}
+
+	@keyframes slide-line {
+		from {
+			width: 0;
+		}
+		to {
+			width: 100%;
+		}
+	}
 </style>
