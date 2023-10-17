@@ -43,3 +43,26 @@ main {
 		bottom: 0;
 	}
 }
+
+.hover-underline {
+	position: relative;
+}
+
+.hover-underline::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0.15rem;
+	width: 100%;
+	height: 1px;
+	background-color: $__main;
+	scale: 0 1;
+	transform-origin: center right;
+	transition: scale 0.5s;
+}
+
+.hover-underline:hover::after {
+	scale: 1 1;
+	transform-origin: left center;
+	transition: scale 0.5s;
+}

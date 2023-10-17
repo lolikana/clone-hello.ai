@@ -1,21 +1,43 @@
 ---
 import NavbarActionButton from '@functionnal-components/ui/NavbarActionButton.tsx';
+import { dataNavbarLink } from '@libs/data';
+import { firstCapitalizeLetter } from '@libs/utils';
 ---
 
 <nav
 	class="secondary-navbar"
 	role="navigation"
 	aria-label="secondary-navigation"
-	aria-hidden="true"
+	aria-hidden="false"
 >
 	<div class="secondary-nav__container">
 		<div class="secondary-navbar__actions">
 			<NavbarActionButton client:load label="Motion" button1="Auto" button2="Pause" />
 			<NavbarActionButton client:load label="Language" button1="Ja" button2="En" />
 		</div>
-		<ul class="secondary-navbar__list">
-			<li></li>
-		</ul>
+		<div class="secondary-navbar__list">
+			<ul class="secondary-navbar__list_items">
+				{
+					dataNavbarLink.map((link, index) => (
+						<li class="secondary-navbar__list_item">
+							<a
+								class="item-link hover-underline"
+								href={link.href}
+								data-link-index={`${(index + 1).toString().padStart(2, '0')}`}
+							>
+								{firstCapitalizeLetter(link.href)}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+			<div class="secondary-navbar__list_otherLinks">
+				<a href="/" class="secondary-navbar__list_otherLink hover-underline">Home</a>
+				<a href="/contact" class="secondary-navbar__list_otherLink hover-underline">
+					Contact
+				</a>
+			</div>
+		</div>
 	</div>
 </nav>
 
@@ -23,7 +45,7 @@ import NavbarActionButton from '@functionnal-components/ui/NavbarActionButton.ts
 	.secondary-navbar {
 		@include position(fixed, 0, 0, 0, 0);
 		height: 0;
-		padding-inline: 1rem;
+		// padding-inline: 1rem;
 	}
 
 	.secondary-navbar[aria-hidden='true'] {
@@ -53,6 +75,13 @@ import NavbarActionButton from '@functionnal-components/ui/NavbarActionButton.ts
 		}
 	}
 
+	.secondary-nav__container {
+		padding-inline: 2vw;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
 	.secondary-navbar__actions {
 		height: $__header_heightMobile;
 		display: flex;
@@ -71,6 +100,55 @@ import NavbarActionButton from '@functionnal-components/ui/NavbarActionButton.ts
 			margin-right: 8rem;
 			justify-content: flex-end;
 			height: $__header_heightDesktop;
+		}
+	}
+	.secondary-navbar__list,
+	.secondary-navbar__list_items {
+		transition: all calc($__secondaryNav_transition / 3) ease-in;
+	}
+
+	.secondary-navbar__list {
+		margin: auto 0;
+		padding-left: 3vw;
+		width: 100%;
+		font-size: 10vw;
+		@include mq('md') {
+			font-size: $__font50;
+			padding-left: $__layout_paddingLeftDesktop;
+		}
+
+		&_items {
+			margin-top: -$__header_heightMobile;
+			display: flex;
+			flex-direction: column;
+			gap: 40px;
+			@include mq('md') {
+				margin-top: -5rem;
+			}
+		}
+
+		&_item {
+			.item-link::before {
+				content: attr(data-link-index);
+				font-size: 4vw;
+				margin-right: 1rem;
+				@include mq('md') {
+					font-size: $__font20;
+				}
+			}
+		}
+	}
+
+	.secondary-navbar__list_otherLinks {
+		font-size: $__font20;
+		display: flex;
+		gap: 2rem;
+		margin-top: 2rem;
+
+		.secondary-navbar__list_otherLink {
+			&::after {
+				bottom: -0.5rem;
+			}
 		}
 	}
 </style>
