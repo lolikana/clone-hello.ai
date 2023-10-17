@@ -2,12 +2,15 @@
 import Logo from '@assets/corp__logo.svg';
 import Burger from '@components/ui/Burger.astro';
 import { Image } from 'astro:assets';
+
+import Navbar from './Navbar.astro';
 ---
 
 <header class="header active">
 	<div class="header__logo">
 		<Image src={Logo} alt="Logo of the company Hello" />
 	</div>
+	<Navbar />
 	<Burger />
 </header>
 

@@ -7,6 +7,8 @@
 </div>
 
 <script>
+	const body = document.body;
+	const navbarSecond = document.querySelector('.secondary-navbar') as HTMLElement;
 	const menuBtn = document.querySelector('.menu-btn') as HTMLDivElement;
 
 	let menuOpen = false;
@@ -19,14 +21,19 @@
 	menuBtn.addEventListener('click', () => {
 		if (!menuOpen) {
 			toggleMenu(true);
+			navbarSecond.setAttribute('aria-hidden', 'false');
+			body.style.overflowY = 'hidden';
 		} else {
 			toggleMenu(false);
+			navbarSecond.setAttribute('aria-hidden', 'true');
+			body.style.overflowY = 'visible';
 		}
 	});
 </script>
 
 <style lang="scss">
 	.menu-btn {
+		z-index: 1002;
 		position: relative;
 		display: flex;
 		justify-content: center;
