@@ -3,6 +3,9 @@
 	align-items: flex-end;
 	gap: 1.5vw;
 	vertical-align: bottom;
+	@include mq('md') {
+		gap: 0.5rem;
+	}
 }
 
 .navbar__action_label {
