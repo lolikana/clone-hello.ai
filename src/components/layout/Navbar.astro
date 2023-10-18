@@ -24,19 +24,28 @@ import { firstCapitalizeLetter } from '@libs/utils';
 								class="item-link hover-underline"
 								href={link.href}
 								data-link-index={`${(index + 1).toString().padStart(2, '0')}`}
+								style={`--delay: ${(index + 1) * 0.2}s`}
 							>
 								{firstCapitalizeLetter(link.href)}
 							</a>
 						</li>
 					))
 				}
+				<li class="secondary-navbar__list_item secondary-navbar__list_bottomLinks">
+					<a
+						href="/"
+						class="item-link hover-underline"
+						style={`--delay: ${(dataNavbarLink.length + 0.5) * 0.2}s`}>Home</a
+					>
+					<a
+						href="contact"
+						class="item-link hover-underline"
+						style={`--delay: ${(dataNavbarLink.length + 1.5) * 0.2}s`}
+					>
+						Contact
+					</a>
+				</li>
 			</ul>
-			<div class="secondary-navbar__list_otherLinks">
-				<a href="/" class="secondary-navbar__list_otherLink hover-underline">Home</a>
-				<a href="/contact" class="secondary-navbar__list_otherLink hover-underline">
-					Contact
-				</a>
-			</div>
 		</div>
 	</div>
 </nav>
@@ -45,7 +54,6 @@ import { firstCapitalizeLetter } from '@libs/utils';
 	.secondary-navbar {
 		@include position(fixed, 0, 0, 0, 0);
 		height: 0;
-		// padding-inline: 1rem;
 	}
 
 	.secondary-navbar[aria-hidden='true'] {
@@ -60,6 +68,13 @@ import { firstCapitalizeLetter } from '@libs/utils';
 			opacity: 0;
 			transition: opacity calc($__secondaryNav_transition / 2) ease-in;
 		}
+
+		.secondary-navbar__list_item {
+			.item-link {
+				transform: translateY(100%);
+				transition: transform $__secondaryNav_transition ease;
+			}
+		}
 	}
 
 	.secondary-navbar[aria-hidden='false'] {
@@ -72,6 +87,15 @@ import { firstCapitalizeLetter } from '@libs/utils';
 			opacity: 1;
 			transition: opacity $__secondaryNav_transition calc($__secondaryNav_transition / 2)
 				ease-in;
+		}
+
+		.secondary-navbar__list_item {
+			overflow: hidden;
+			display: inline-flex;
+			.item-link {
+				transform: translateY(0);
+				transition: transform $__secondaryNav_transition var(--delay) ease;
+			}
 		}
 	}
 
@@ -102,6 +126,7 @@ import { firstCapitalizeLetter } from '@libs/utils';
 			height: $__header_heightDesktop;
 		}
 	}
+
 	.secondary-navbar__list,
 	.secondary-navbar__list_items {
 		transition: all calc($__secondaryNav_transition / 3) ease-in;
@@ -116,39 +141,38 @@ import { firstCapitalizeLetter } from '@libs/utils';
 			font-size: $__font50;
 			padding-left: $__layout_paddingLeftDesktop;
 		}
+	}
 
-		&_items {
-			margin-top: -$__header_heightMobile;
-			display: flex;
-			flex-direction: column;
-			gap: 40px;
-			@include mq('md') {
-				margin-top: -5rem;
-			}
+	.secondary-navbar__list_items {
+		margin-top: -$__header_heightMobile;
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+		@include mq('md') {
+			margin-top: -5rem;
 		}
+	}
 
-		&_item {
-			.item-link::before {
-				content: attr(data-link-index);
-				font-size: 4vw;
-				margin-right: 1rem;
-				@include mq('md') {
-					font-size: $__font20;
-				}
+	.secondary-navbar__list_item:not(:last-child) {
+		.item-link {
+			line-height: 1.3;
+		}
+		.item-link::before {
+			content: attr(data-link-index);
+			font-size: 4vw;
+			margin-right: 1rem;
+			@include mq('md') {
+				font-size: $__font20;
 			}
 		}
 	}
 
-	.secondary-navbar__list_otherLinks {
+	.secondary-navbar__list_bottomLinks {
 		font-size: $__font20;
 		display: flex;
-		gap: 2rem;
-		margin-top: 2rem;
-
-		.secondary-navbar__list_otherLink {
-			&::after {
-				bottom: -0.5rem;
-			}
+		.item-link {
+			margin-right: 1.5rem;
+			line-height: 1.7;
 		}
 	}
 </style>
