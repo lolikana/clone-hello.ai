@@ -3,16 +3,27 @@ import Logo from '@assets/corp__logo.svg';
 import Burger from '@components/ui/Burger.astro';
 import { Image } from 'astro:assets';
 
+import NavbarActions from './NavbarActions.astro';
 import PrimaryNavbar from './PrimaryNavbar.astro';
 import SecondaryNavbar from './SecondaryNavbar.astro';
 ---
 
-<header class="header active">
+<header class="header">
 	<div class="header__logo">
 		<Image src={Logo} alt="Logo of the company Hello" />
 	</div>
-	<PrimaryNavbar />
-	<SecondaryNavbar />
+	<PrimaryNavbar class="primary-navbar">
+		<NavbarActions
+			class="primary-navbar__actions navbar__actions_display"
+			slot="navbar-actions"
+		/>
+	</PrimaryNavbar>
+	<SecondaryNavbar>
+		<NavbarActions
+			class="secondary-navbar__actions navbar__actions_display"
+			slot="navbar-actions"
+		/>
+	</SecondaryNavbar>
 	<Burger />
 </header>
 
@@ -36,6 +47,34 @@ import SecondaryNavbar from './SecondaryNavbar.astro';
 	.header__logo {
 		width: 16vw;
 		transition: width $__header_heightTransition;
+	}
+
+	.navbar__actions_display {
+		z-index: 1002;
+	}
+
+	.header {
+		.primary-navbar,
+		.header__logo img {
+			transition: all $__header_heightTransition ease;
+		}
+	}
+
+	.header.out {
+		height: 120px;
+		.primary-navbar,
+		.header__logo img {
+			transition: all $__header_heightTransition ease;
+		}
+
+		.header__logo img {
+			width: 60px;
+		}
+
+		.primary-navbar {
+			opacity: 0;
+			visibility: hidden;
+		}
 	}
 
 	@media screen and (min-width: 768px) {

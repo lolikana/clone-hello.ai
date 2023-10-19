@@ -47,6 +47,7 @@ import Header from '@components/layout/Header.astro';
 </style>
 
 <script>
+	const header = document.querySelector('header') as HTMLElement;
 	const sectionLine = document.querySelector('.section-line.top-line') as HTMLDivElement;
 	window.addEventListener('scroll', () => {
 		const scrollY = window.scrollY;
@@ -54,5 +55,6 @@ import Header from '@components/layout/Header.astro';
 		scrollY === 0
 			? sectionLine.classList.remove('out')
 			: sectionLine.classList.add('out');
+		scrollY === 0 ? header.classList.remove('out') : header.classList.add('out');
 	});
 </script>

@@ -1,13 +1,12 @@
 ---
 import { dataNavbarLink } from '@libs/data';
 
-import NavbarActions from './NavbarActions.astro';
 import NavbarLinks from './NavbarLinks.astro';
 ---
 
 <nav class="secondary-navbar" aria-label="secondary-navigation" aria-hidden="true">
 	<div class="secondary-nav__container">
-		<NavbarActions class="navbar__actions_display" />
+		<slot name="navbar-actions" />
 		<div class="secondary-navbar__list">
 			<ul class="secondary-navbar__list_items">
 				{
@@ -92,12 +91,6 @@ import NavbarLinks from './NavbarLinks.astro';
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-	}
-
-	.secondary-nav__container .navbar__actions_display {
-		@include mq('custom1024') {
-			display: none;
-		}
 	}
 
 	.secondary-navbar__list,
