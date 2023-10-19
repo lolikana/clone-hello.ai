@@ -9,10 +9,10 @@ type Props = {
 };
 
 const NavbarActionButton: FC<Props> = ({ label, button1, button2 }) => {
-	const [isPressed, setIsPressed] = useState<boolean>(true);
+	const [isSelected, setIsSelected] = useState<boolean>(true);
 
 	const toggleIsPressed = () => {
-		setIsPressed(prevState => !prevState);
+		setIsSelected(prevState => !prevState);
 	};
 
 	const content = (
@@ -23,20 +23,16 @@ const NavbarActionButton: FC<Props> = ({ label, button1, button2 }) => {
 			<p className={styles.navbar__action_buttons}>
 				<button
 					onClick={() => toggleIsPressed()}
-					role="heading"
 					aria-label={`${button1}`}
-					aria-selected={isPressed}
-					disabled={isPressed}
+					disabled={isSelected}
 				>
 					{button1}
 				</button>
 				<span> /&nbsp;</span>
 				<button
 					onClick={() => toggleIsPressed()}
-					role="heading"
 					aria-label={`${button2}`}
-					aria-selected={!isPressed}
-					disabled={!isPressed}
+					disabled={!isSelected}
 				>
 					{button2}
 				</button>
