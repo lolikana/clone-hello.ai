@@ -26,10 +26,13 @@ main {
 	padding-top: $__header_heightMobile;
 	transition: padding-top $__header_heightTransition ease;
 	@include mq('md') {
-		padding-top: $__header_heightDesktop;
+		padding-top: $__header_height768;
 	}
-	@include mq('xl') {
-		padding-top: $__header_heightLarge;
+	@include mq('custom1024') {
+		padding-top: $__header_height1024;
+	}
+	@include mq('custom1440') {
+		padding-top: $__header_height1440;
 	}
 	height: 120vh;
 }

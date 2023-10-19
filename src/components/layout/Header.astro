@@ -3,14 +3,16 @@ import Logo from '@assets/corp__logo.svg';
 import Burger from '@components/ui/Burger.astro';
 import { Image } from 'astro:assets';
 
-import Navbar from './Navbar.astro';
+import PrimaryNavbar from './PrimaryNavbar.astro';
+import SecondaryNavbar from './SecondaryNavbar.astro';
 ---
 
 <header class="header active">
 	<div class="header__logo">
 		<Image src={Logo} alt="Logo of the company Hello" />
 	</div>
-	<Navbar />
+	<PrimaryNavbar />
+	<SecondaryNavbar />
 	<Burger />
 </header>
 
@@ -32,29 +34,34 @@ import Navbar from './Navbar.astro';
 	}
 
 	.header__logo {
-		width: 70px;
+		width: 16vw;
 		transition: width $__header_heightTransition;
 	}
 
 	@media screen and (min-width: 768px) {
 		.header {
-			height: $__header_heightDesktop;
+			height: $__header_height768;
 			padding-inline: 40px;
 		}
 
 		.header__logo {
-			width: 90px;
+			min-width: 90px;
 		}
 	}
 
-	@media screen and (min-width: 1280px) {
+	@media screen and (min-width: 1024px) {
 		.header {
-			height: $__header_heightLarge;
+			height: $__header_height1024;
 			padding-inline: 2.5vw;
 		}
+	}
 
+	@media screen and (min-width: 1440px) {
+		.header {
+			height: $__header_height1440;
+		}
 		.header__logo {
-			width: 100px;
+			width: 6.25vw;
 		}
 	}
 </style>

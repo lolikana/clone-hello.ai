@@ -32,10 +32,13 @@ import Header from '@components/layout/Header.astro';
 		opacity: 0;
 		top: -$__header_heightMobile;
 		@include mq('md') {
-			top: -$__header_heightDesktop;
+			top: -$__header_height768;
 		}
-		@include mq('xl') {
-			top: -$__header_heightLarge;
+		@include mq('custom1024') {
+			top: -$__header_height1024;
+		}
+		@include mq('custom1440') {
+			top: -$__header_height1440;
 		}
 		transition:
 			top 750ms ease,

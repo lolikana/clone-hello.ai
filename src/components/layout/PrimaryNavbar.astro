@@ -1,0 +1,64 @@
+---
+import { dataNavbarLink } from '@libs/data';
+
+import NavbarActions from './NavbarActions.astro';
+import NavbarLinks from './NavbarLinks.astro';
+---
+
+<nav class="primary-navbar">
+	<ul class="primary-navbar__list_items">
+		{
+			dataNavbarLink.map((link, index) => (
+				<NavbarLinks
+					link={link}
+					index={index}
+					class="primary-navbar__list_item"
+					class2="item_link"
+				/>
+			))
+		}
+	</ul>
+	<NavbarActions />
+</nav>
+
+<style lang="scss">
+	.primary-navbar {
+		display: none;
+	}
+
+	@media screen and (min-width: 1024px) {
+		.primary-navbar {
+			width: 100%;
+			padding-left: 10%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.primary-navbar__list_items {
+			width: 360px;
+			height: calc($__header_height1024 / 2.25);
+			display: flex;
+			flex-flow: column wrap;
+			align-items: center;
+		}
+
+		.primary-navbar__list_item {
+			width: 180px;
+			height: calc($__header_height1024 / 2.25 / 3);
+			display: flex;
+			align-items: center;
+		}
+
+		.item_link {
+			font-size: $__font12;
+			&::before {
+				margin-right: 0.5rem;
+				font-size: $__font10;
+			}
+			&::after {
+				bottom: -0.25rem;
+			}
+		}
+	}
+</style>
