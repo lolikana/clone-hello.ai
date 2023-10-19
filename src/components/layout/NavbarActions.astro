@@ -9,6 +9,7 @@ import NavbarActionButton from '@functionnal-components/ui/NavbarActionButton';
 
 <style lang="scss">
 	.secondary-navbar__actions {
+		z-index: 1002;
 		height: $__header_heightMobile;
 		display: flex;
 		flex-direction: column;
@@ -23,7 +24,8 @@ import NavbarActionButton from '@functionnal-components/ui/NavbarActionButton';
 		}
 		@include mq('md') {
 			gap: 1.5rem;
-			margin-right: 8rem;
+			position: absolute;
+			right: calc(8rem + var(--scrollbar-width));
 			justify-content: flex-end;
 			flex-wrap: nowrap;
 			height: $__header_height768;

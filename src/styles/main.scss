@@ -1,6 +1,10 @@
 @import 'reset';
 @import 'config';
 
+:root {
+	--scrollbar-width: 0px;
+}
+
 body {
 	font-family:
 		Manrope,

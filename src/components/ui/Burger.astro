@@ -7,9 +7,11 @@
 </div>
 
 <script>
+	let root = document.documentElement;
 	const body = document.body;
 	const navbarSecond = document.querySelector('.secondary-navbar') as HTMLElement;
 	const menuBtn = document.querySelector('.menu-btn') as HTMLDivElement;
+
 	let menuOpen = false;
 
 	const toggleMenu = (state: boolean) => {
@@ -18,9 +20,11 @@
 	};
 
 	let menuOpenTimeout: ReturnType<typeof setTimeout>;
+	let scrollbarWidth: number;
 
 	menuBtn.addEventListener('click', () => {
 		if (!menuOpen) {
+			scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 			toggleMenu(true);
 			navbarSecond.style.display = 'block';
 			if (menuOpenTimeout) {
@@ -28,7 +32,8 @@
 			}
 			menuOpenTimeout = setTimeout(() => {
 				navbarSecond.setAttribute('aria-hidden', 'false');
-				body.style.overflowY = 'hidden';
+				root.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+				body.setAttribute('style', `overflow-y: hidden; `);
 			}, 10); // Timer to ensure transitions work correctly
 		} else {
 			toggleMenu(false);
@@ -40,7 +45,8 @@
 				navbarSecond.style.display = 'none';
 			}, 1000); // Timer to ensure transitions work correctly
 		}
-		body.style.overflowY = 'visible';
+		root.style.setProperty('--scrollbar-width', `0px`);
+		body.setAttribute('style', `overflow-y: visible;`);
 	});
 </script>
 
@@ -48,11 +54,11 @@
 	.menu-btn {
 		z-index: 1002;
 		position: relative;
+		margin-right: var(--scrollbar-width);
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		cursor: pointer;
-		transition: all 0.5s ease-in-out;
 	}
 
 	.menu-btn {
