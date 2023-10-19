@@ -28,6 +28,9 @@ main {
 	@include mq('md') {
 		padding-top: $__header_heightDesktop;
 	}
+	@include mq('xl') {
+		padding-top: $__header_heightLarge;
+	}
 	height: 120vh;
 }
 

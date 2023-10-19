@@ -34,6 +34,9 @@ import Header from '@components/layout/Header.astro';
 		@include mq('md') {
 			top: -$__header_heightDesktop;
 		}
+		@include mq('xl') {
+			top: -$__header_heightLarge;
+		}
 		transition:
 			top 750ms ease,
 			1750ms opacity 1ms ease;
