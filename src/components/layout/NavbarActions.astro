@@ -1,15 +1,16 @@
 ---
 import NavbarActionButton from '@functionnal-components/ui/NavbarActionButton';
+
+const { class: navbar__actions_display, ...rest } = Astro.props;
 ---
 
-<div class="secondary-navbar__actions">
+<div class:list={['navbar__actions', navbar__actions_display]} {...rest}>
 	<NavbarActionButton client:load label="Motion" button1="Auto" button2="Pause" />
 	<NavbarActionButton client:load label="Language" button1="Ja" button2="En" />
 </div>
 
 <style lang="scss">
-	.secondary-navbar__actions {
-		z-index: 1002;
+	.navbar__actions {
 		height: $__header_heightMobile;
 		display: flex;
 		flex-direction: column;

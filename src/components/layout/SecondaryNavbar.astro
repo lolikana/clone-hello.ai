@@ -12,7 +12,7 @@ import NavbarLinks from './NavbarLinks.astro';
 	aria-hidden="true"
 >
 	<div class="secondary-nav__container">
-		<NavbarActions />
+		<NavbarActions class="navbar__actions_display" />
 		<div class="secondary-navbar__list">
 			<ul class="secondary-navbar__list_items">
 				{
@@ -96,6 +96,12 @@ import NavbarLinks from './NavbarLinks.astro';
 		height: 100%;
 		display: flex;
 		flex-direction: column;
+	}
+
+	.secondary-nav__container .navbar__actions_display {
+		@include mq('custom1024') {
+			display: none;
+		}
 	}
 
 	.secondary-navbar__list,
