@@ -9,9 +9,6 @@
 <script>
 	const body = document.body;
 	const navbarSecond = document.querySelector('.secondary-navbar') as HTMLElement;
-	const navbarSecondList = document.querySelectorAll(
-		'.secondary-navbar__list > ul > li > a'
-	);
 	const menuBtn = document.querySelector('.menu-btn') as HTMLDivElement;
 	let menuOpen = false;
 
@@ -20,23 +17,30 @@
 		menuOpen = state;
 	};
 
+	let menuOpenTimeout: ReturnType<typeof setTimeout>;
+
 	menuBtn.addEventListener('click', () => {
 		if (!menuOpen) {
 			toggleMenu(true);
-			navbarSecond.setAttribute('aria-hidden', 'false');
-			body.style.overflowY = 'hidden';
+			navbarSecond.style.display = 'block';
+			if (menuOpenTimeout) {
+				clearTimeout(menuOpenTimeout); // Clear the previous timeout.
+			}
+			menuOpenTimeout = setTimeout(() => {
+				navbarSecond.setAttribute('aria-hidden', 'false');
+				body.style.overflowY = 'hidden';
+			}, 10); // Timer to ensure transitions work correctly
 		} else {
 			toggleMenu(false);
 			navbarSecond.setAttribute('aria-hidden', 'true');
-			navbarSecondList.forEach((link: HTMLAnchorElement) => {
-				const translate = window.getComputedStyle(link).getPropertyValue('translate');
-				link.style.translate = translate;
-				link.classList.remove('translate-transition');
-				link.style.translate = '';
-				link.classList.add('translate-transition');
-			});
-			body.style.overflowY = 'visible';
+			if (menuOpenTimeout) {
+				clearTimeout(menuOpenTimeout); // Clear the previous timeout.
+			}
+			menuOpenTimeout = setTimeout(() => {
+				navbarSecond.style.display = 'none';
+			}, 1000); // Timer to ensure transitions work correctly
 		}
+		body.style.overflowY = 'visible';
 	});
 </script>
 
