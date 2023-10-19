@@ -17,15 +17,15 @@ const NavbarActionButton: FC<Props> = ({ label, button1, button2 }) => {
 
 	const content = (
 		<div className={styles.navbar__action}>
-			<p className={styles.navbar__action_label} role="menuitem">
+			<p className={styles.navbar__action_label} role="menubar">
 				{label}
 			</p>
 			<p className={styles.navbar__action_buttons}>
 				<button
 					onClick={() => toggleIsPressed()}
-					role="menuitem"
+					role="menubar"
 					aria-label={`${button1}`}
-					aria-pressed={isPressed}
+					aria-selected={isPressed}
 					disabled={isPressed}
 				>
 					{button1}
@@ -33,9 +33,9 @@ const NavbarActionButton: FC<Props> = ({ label, button1, button2 }) => {
 				<span> /&nbsp;</span>
 				<button
 					onClick={() => toggleIsPressed()}
-					role="menuitem"
+					role="menubar"
 					aria-label={`${button2}`}
-					aria-pressed={!isPressed}
+					aria-selected={!isPressed}
 					disabled={!isPressed}
 				>
 					{button2}
