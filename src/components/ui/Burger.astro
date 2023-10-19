@@ -9,8 +9,10 @@
 <script>
 	const body = document.body;
 	const navbarSecond = document.querySelector('.secondary-navbar') as HTMLElement;
+	const navbarSecondList = document.querySelectorAll(
+		'.secondary-navbar__list > ul > li > a'
+	);
 	const menuBtn = document.querySelector('.menu-btn') as HTMLDivElement;
-
 	let menuOpen = false;
 
 	const toggleMenu = (state: boolean) => {
@@ -26,6 +28,13 @@
 		} else {
 			toggleMenu(false);
 			navbarSecond.setAttribute('aria-hidden', 'true');
+			navbarSecondList.forEach((link: HTMLAnchorElement) => {
+				const translate = window.getComputedStyle(link).getPropertyValue('translate');
+				link.style.translate = translate;
+				link.classList.remove('translate-transition');
+				link.style.translate = '';
+				link.classList.add('translate-transition');
+			});
 			body.style.overflowY = 'visible';
 		}
 	});
