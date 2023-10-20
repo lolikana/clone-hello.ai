@@ -6,11 +6,16 @@ body {
 @media (prefers-color-scheme: dark) {
 	html {
 		--theme: dark;
+		transition: all 1s ease;
 	}
 }
 
 html[data-theme='dark'] {
 	--theme: dark;
+}
+
+html[data-theme='light'] {
+	--theme: none;
 }
 
 /* Attach dark mode styles */

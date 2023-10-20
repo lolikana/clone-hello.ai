@@ -1,12 +1,21 @@
 $__main: #ffffff;
 $__sub: #000000;
 
-$__primary: #dedede59;
+$__primary: #a9a9a9d3;
 $__secondary: #db3c86;
 $__tertiary: #a9a9a9;
 
+$__primary_dark: #dedede59;
+$__secondary_dark: #db3c86;
+$__tertiary_dark: #a9a9a9;
+
 $__link: #050c22;
 $__link_blue: #1d6dbe;
+
+$__filter_black: brightness(0) saturate(100%) invert(0%) sepia(100%) saturate(7500%)
+	hue-rotate(352deg) brightness(99%) contrast(101%);
+$__filter_white: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%)
+	hue-rotate(341deg) brightness(103%) contrast(102%);
 
 $__grey50: #fafafa;
 $__grey100: #f9f9f9;

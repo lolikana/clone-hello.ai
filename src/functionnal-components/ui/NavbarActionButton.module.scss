@@ -35,6 +35,9 @@
 	}
 	button:not(:disabled) {
 		color: $__primary;
+		@container style(--theme: dark) {
+			color: $__primary;
+		}
 		cursor: pointer;
 	}
 }

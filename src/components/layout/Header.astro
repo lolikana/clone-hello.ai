@@ -1,6 +1,7 @@
 ---
 import Logo from '@assets/corp__logo.svg';
 import Burger from '@components/ui/Burger.astro';
+import DarkThemeButton from '@components/ui/DarkThemeButton.astro';
 import { Image } from 'astro:assets';
 
 import NavbarActions from './NavbarActions.astro';
@@ -9,6 +10,9 @@ import SecondaryNavbar from './SecondaryNavbar.astro';
 ---
 
 <header class="header">
+	<div class="header__theme">
+		<DarkThemeButton />
+	</div>
 	<div class="header__logo">
 		<Image src={Logo} alt="Logo of the company Hello" />
 	</div>
@@ -44,9 +48,19 @@ import SecondaryNavbar from './SecondaryNavbar.astro';
 			padding-inline calc($__header_heightTransition + 400ms) ease;
 	}
 
+	.header__theme {
+		position: absolute;
+		right: 2rem;
+		top: 0.75rem;
+	}
+
 	.header__logo {
 		width: 16vw;
 		transition: width $__header_heightTransition;
+		filter: $__filter_black;
+		@container style(--theme: dark) {
+			filter: $__filter_white;
+		}
 	}
 
 	.navbar__actions_display {

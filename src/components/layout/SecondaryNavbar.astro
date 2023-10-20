@@ -69,8 +69,11 @@ import NavbarLinks from './NavbarLinks.astro';
 	.secondary-navbar[aria-hidden='false'] {
 		z-index: 1001;
 		height: 100%;
-		background-color: rgba(0, 0, 0, 1);
 		transition: background-color calc($__secondaryNav_transition / 2) 0s ease-in;
+		background-color: $__main;
+		@container style(--theme: dark) {
+			background-color: $__sub;
+		}
 
 		.secondary-nav__container {
 			opacity: 1;

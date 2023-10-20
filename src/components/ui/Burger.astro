@@ -71,7 +71,10 @@
 	}
 
 	.menu-btn__burger {
-		background: $__sub;
+		background: $__main;
+		@container style(--theme: dark) {
+			background: $__sub;
+		}
 	}
 
 	.menu-btn__burger,
@@ -84,7 +87,10 @@
 
 	.menu-btn__burger::before,
 	.menu-btn__burger::after {
-		background: $__main;
+		background: $__sub;
+		@container style(--theme:dark) {
+			background: $__main;
+		}
 	}
 
 	.menu-btn__burger::before,
