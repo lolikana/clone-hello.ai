@@ -1,6 +1,7 @@
 body {
 	background-color: $__main;
 	color: $__sub;
+	transition: all 750ms ease;
 }
 
 @media (prefers-color-scheme: dark) {
