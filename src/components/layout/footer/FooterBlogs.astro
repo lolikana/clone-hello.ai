@@ -18,9 +18,15 @@ const footerBlogsData = [
 		text: 'This is a list of note magazines operated by Hello Inc. We have compiled employee articles by job type, excluding development and design.'
 	}
 ];
+
+type Props = {
+	blockTitle: string;
+};
+
+const { blockTitle } = Astro.props;
 ---
 
-<FooterBlock title="Learn More About Hello">
+<FooterBlock title={blockTitle}>
 	<ul class="footer__blogs_items">
 		{
 			footerBlogsData.map(blog => (
