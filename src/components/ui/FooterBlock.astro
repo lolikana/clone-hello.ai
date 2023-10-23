@@ -1,0 +1,30 @@
+---
+type Props = {
+	title: string;
+};
+
+const { title } = Astro.props;
+---
+
+<div class="footer__containers">
+	<h3 class="footer__title">
+		<span>(</span>
+		{title}
+		<span>)</span>
+	</h3>
+	<slot />
+</div>
+
+<style lang="scss">
+	.footer__title {
+		font-size: 3vw;
+		margin-bottom: 8vw;
+	}
+
+	@media screen and (min-width: 768px) {
+		.footer__title {
+			font-size: 1vw;
+			margin-bottom: 3vw;
+		}
+	}
+</style>

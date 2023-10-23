@@ -1,0 +1,109 @@
+---
+import FooterBlock from '@components/ui/FooterBlock.astro';
+
+const footerBlogsData = [
+	{
+		title: 'Hello Tech Blog',
+		link: '/text-blog',
+		text: "This is the development team's technical blog. We share information about our technology stack and development structure, as well as the process of trial and error we undergo."
+	},
+	{
+		title: 'Hello Design Blog',
+		link: '/design-blog',
+		text: "This is the design team's design blog. We share information about UI & UX, as well as the process of trial and error we undergo."
+	},
+	{
+		title: 'Hello Magazine for note',
+		link: '/magazine-note',
+		text: 'This is a list of note magazines operated by Hello Inc. We have compiled employee articles by job type, excluding development and design.'
+	}
+];
+---
+
+<FooterBlock title="Learn More About Hello">
+	<ul class="footer__blogs_items">
+		{
+			footerBlogsData.map(blog => (
+				<li class="footer__blogs_item">
+					<a href={blog.link} class="blog__link">
+						<h4 class="blog__title hover-underline">
+							{blog.title} <span class="blog__link_icon" />
+						</h4>
+						<p class="blog__text">{blog.text}</p>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</FooterBlock>
+
+<style lang="scss">
+	.footer__blogs_item {
+		flex: 30vw;
+		border: 1px solid $__tertiary;
+		border-radius: 0.5rem;
+		margin-bottom: 4rem;
+
+		.blog__link {
+			display: inline-block;
+			padding: 8vw;
+		}
+		.blog__title {
+			width: fit-content;
+			font-size: 5vw;
+			margin-bottom: 10vw;
+			display: flex;
+			gap: 1rem;
+
+			&::after {
+				bottom: -0.5rem;
+			}
+		}
+
+		.blog__link_icon {
+			&::after {
+				content: '';
+				display: inline-block;
+				width: $__font16;
+				height: $__font16;
+				background-image: url('@assets/icons/open_in_new_FILL0_wght400_GRAD0_opsz24.svg');
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: left;
+				filter: $__filter_white;
+			}
+		}
+
+		.blog__text {
+			text-align: justify;
+			hyphens: auto;
+			-webkit-hyphens: auto;
+			word-spacing: -0.05em;
+			font-size: 3vw;
+			line-height: 200%;
+			margin-top: 1.5vw;
+		}
+	}
+
+	@media screen and (min-width: 768px) {
+		.footer__blogs_items {
+			display: flex;
+			justify-content: space-between;
+			gap: 2rem;
+			margin-bottom: 0;
+		}
+
+		.footer__blogs_item {
+			.blog__link {
+				padding: 2.5vw 2.7vw;
+			}
+			.blog__title {
+				font-size: 1.7vw;
+				margin-bottom: 3vw;
+			}
+			.blog__text {
+				font-size: 1vw;
+			}
+		}
+	}
+</style>
