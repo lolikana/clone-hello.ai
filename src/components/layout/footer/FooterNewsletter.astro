@@ -22,20 +22,33 @@ const { blockTitle } = Astro.props;
 				<span>Newsletter</span>
 			</div>
 		</div>
+		<form action="/subscribe" method="post" class="footer__newsletter_form">
+			<label for="subscribe-email">
+				<input
+					type="email"
+					id="subscribe-email"
+					name="subscribe-email"
+					placeholder="Enter your mail"
+					required
+				/>
+			</label>
+			<button type="submit">Subscribe</button>
+		</form>
 	</div>
 </FooterBlock>
 
 <style lang="scss">
 	.footer__newsletter {
+		width: 100%;
 		background-color: $__secondary;
 		border-radius: 0.5rem;
 		display: flex;
-		align-items: center;
+		flex-direction: column;
 		padding: 10vw 8vw;
 	}
 
 	.footer__newsletter_slogans {
-		height: 50%;
+		height: 20vw;
 		font-size: 5vw;
 		line-height: 2;
 		display: flex;
@@ -47,13 +60,51 @@ const { blockTitle } = Astro.props;
 		display: none;
 	}
 
+	.footer__newsletter_form {
+		margin-top: 6vw;
+		display: flex;
+		justify-content: space-between;
+		gap: 3vw;
+		label {
+			width: 100%;
+			position: relative;
+			&::after {
+				content: '';
+				height: 1px;
+				width: 100%;
+				background-color: $__tertiary;
+				position: absolute;
+				bottom: -0.5rem;
+				left: 0;
+			}
+		}
+
+		input {
+			padding: 0.5rem 0.75rem;
+			width: 100%;
+			border: 1px solid transparent;
+			&::placeholder {
+				color: $__tertiary;
+			}
+			&:focus {
+				border: 1px solid $__tertiary;
+			}
+		}
+	}
+
 	@media screen and (min-width: 768px) {
 		.footer__newsletter {
 			height: 15vw;
 			padding: 0 4.5vw;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
 		}
+
 		.footer__newsletter_slogans {
+			height: 50%;
 			font-size: 2vw;
+			flex: 1;
 		}
 
 		.footer__newsletter_slogan:nth-child(2) {
@@ -66,6 +117,12 @@ const { blockTitle } = Astro.props;
 
 		.footer__newsletter:hover .footer__newsletter_slogan {
 			translate: 0 -100%;
+		}
+
+		.footer__newsletter_form {
+			width: 100%;
+			flex: 4;
+			margin-top: 0;
 		}
 	}
 </style>
