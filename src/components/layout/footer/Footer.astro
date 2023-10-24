@@ -1,15 +1,113 @@
 ---
+import Logo from '@assets/corp__logo.svg';
+import { firstCapitalizeLetter } from '@libs/utils';
+import { Image } from 'astro:assets';
+
+import PrimaryNavbar from '../PrimaryNavbar.astro';
 import FooterBlogs from './FooterBlogs.astro';
 import FooterNewsletter from './FooterNewsletter.astro';
 ---
 
 <footer class="footer">
-	<FooterBlogs blockTitle="Learn More About Hello" />
-	<FooterNewsletter blockTitle="Hello's Newsletter " />
+	<div>
+		<FooterBlogs blockTitle="Learn More About Hello" />
+	</div>
+	<div>
+		<FooterNewsletter blockTitle="Hello's Newsletter " />
+	</div>
+	<div class="footer__links">
+		<Image class="footer__logo" src={Logo} alt="Logo of the company Hello" />
+		<PrimaryNavbar class="footer-navbar" />
+		<ul class="footer__contact">
+			<li class="footer__contact_link">
+				<a
+					class:list={['item-link translate-transition hover-underline']}
+					href="/contact"
+				>
+					{firstCapitalizeLetter('contact')}
+				</a>
+			</li>
+		</ul>
+		<div class="footer__policies">
+			<ul class="footer__policies_links">
+				<li><a href="/privacy-policy">Privacy Policy</a></li>
+				<li><a href="/cookie-policy">Cookie Policy</a></li>
+			</ul>
+			<p class="footer__policies_copyright">© 2023 lolikana, Inc.</p>
+		</div>
+	</div>
 </footer>
 
 <style lang="scss">
 	.footer {
 		padding: 8vw 2.5vw;
+
+		div:not(:last-child) {
+			margin-bottom: 80px;
+		}
+	}
+
+	.footer-navbar {
+		width: fit-content;
+	}
+
+	.footer__links {
+		display: flex;
+		align-items: center;
+		font-size: $__font12;
+		position: relative;
+
+		.footer__logo {
+			width: 60px;
+			transition: width $__header_heightTransition;
+			filter: $__filter_black;
+			@container style(--theme: dark) {
+				filter: $__filter_white;
+			}
+		}
+
+		.footer__contact {
+			display: none;
+			list-style: none;
+			align-self: flex-start;
+			@include mq('custom1024') {
+				display: block;
+			}
+
+			&_link {
+				display: flex;
+				align-items: center;
+				height: calc($__header_height1024 / 2.25 / 3);
+
+				a::after {
+					bottom: -0.25rem;
+				}
+			}
+		}
+
+		.footer__policies {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			font-size: $__font14;
+
+			&_links {
+				display: flex;
+				gap: 1rem;
+			}
+
+			&_copyright {
+				text-align: right;
+				color: $__primary;
+			}
+
+			@include mq('md') {
+				flex-direction: row;
+				font-size: $__font10;
+			}
+		}
 	}
 </style>
