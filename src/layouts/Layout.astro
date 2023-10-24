@@ -51,6 +51,10 @@ import Header from '@components/layout/Header.astro';
 <script>
 	const header = document.querySelector('header') as HTMLElement;
 	const sectionLine = document.querySelector('.section-line.top-line') as HTMLDivElement;
+	const scrollY = window.scrollY;
+
+	scrollY ? header.classList.add('out') : null;
+
 	window.addEventListener('scroll', () => {
 		const scrollY = window.scrollY;
 		if (scrollY >= 20) return;
