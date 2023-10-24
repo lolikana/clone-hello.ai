@@ -54,6 +54,7 @@ const { blockTitle } = Astro.props;
 			display: inline-block;
 			padding: 8vw;
 		}
+
 		.blog__title {
 			width: fit-content;
 			font-size: 5vw;
@@ -70,13 +71,16 @@ const { blockTitle } = Astro.props;
 			&::after {
 				content: '';
 				display: inline-block;
-				width: $__font16;
-				height: $__font16;
+				width: $__font14;
+				height: $__font14;
 				background-image: url('@assets/icons/open_in_new_FILL0_wght400_GRAD0_opsz24.svg');
 				background-repeat: no-repeat;
 				background-size: contain;
 				background-position: left;
-				filter: $__filter_white;
+				filter: $__filter_black;
+				@container style(--theme: dark) {
+					filter: $__filter_white;
+				}
 			}
 		}
 

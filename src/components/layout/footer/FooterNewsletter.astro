@@ -1,6 +1,8 @@
 ---
 import FooterBlock from '@components/ui/FooterBlock.astro';
 
+import FooterNewsletterForm from './FooterNewsletterForm.astro';
+
 type Props = {
 	blockTitle: string;
 };
@@ -22,18 +24,7 @@ const { blockTitle } = Astro.props;
 				<span>Newsletter</span>
 			</div>
 		</div>
-		<form action="/subscribe" method="post" class="footer__newsletter_form">
-			<label for="subscribe-email">
-				<input
-					type="email"
-					id="subscribe-email"
-					name="subscribe-email"
-					placeholder="Enter your mail"
-					required
-				/>
-			</label>
-			<button type="submit">Subscribe</button>
-		</form>
+		<FooterNewsletterForm class="subscribe__btn_span" />
 	</div>
 </FooterBlock>
 
@@ -60,40 +51,10 @@ const { blockTitle } = Astro.props;
 		display: none;
 	}
 
-	.footer__newsletter_form {
-		margin-top: 6vw;
-		display: flex;
-		justify-content: space-between;
-		gap: 3vw;
-		label {
-			width: 100%;
-			position: relative;
-			&::after {
-				content: '';
-				height: 1px;
-				width: 100%;
-				background-color: $__tertiary;
-				position: absolute;
-				bottom: -0.5rem;
-				left: 0;
-			}
-		}
-
-		input {
-			padding: 0.5rem 0.75rem;
-			width: 100%;
-			border: 1px solid transparent;
-			&::placeholder {
-				color: $__tertiary;
-			}
-			&:focus {
-				border: 1px solid $__tertiary;
-			}
-		}
-	}
-
 	@media screen and (min-width: 768px) {
 		.footer__newsletter {
+			--animation-opts: 0.5s ease-in-out 0s 1 normal forwards;
+
 			height: 15vw;
 			padding: 0 4.5vw;
 			flex-direction: row;
@@ -111,18 +72,31 @@ const { blockTitle } = Astro.props;
 			display: block;
 		}
 
-		.footer__newsletter_slogan {
-			transition: all 750ms ease;
-		}
+		.footer__newsletter {
+			.footer__newsletter_slogan {
+				animation: translate-y-default var(--animation-opts);
+			}
 
-		.footer__newsletter:hover .footer__newsletter_slogan {
-			translate: 0 -100%;
-		}
+			.subscribe__btn_span::before {
+				animation: translate-x-before-default var(--animation-opts);
+			}
 
-		.footer__newsletter_form {
-			width: 100%;
-			flex: 4;
-			margin-top: 0;
+			.subscribe__btn_span::after {
+				animation: translate-x-after-default var(--animation-opts);
+			}
+
+			&:hover {
+				.footer__newsletter_slogan {
+					animation: translate-y var(--animation-opts);
+				}
+
+				.subscribe__btn_span::before {
+					animation: translate-x-before var(--animation-opts);
+				}
+				.subscribe__btn_span::after {
+					animation: translate-x-after var(--animation-opts);
+				}
+			}
 		}
 	}
 </style>
