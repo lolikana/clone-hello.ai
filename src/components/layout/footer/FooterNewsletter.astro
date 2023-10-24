@@ -32,6 +32,9 @@ const { blockTitle } = Astro.props;
 	.footer__newsletter {
 		width: 100%;
 		background-color: $__secondary;
+		@container style(--theme: dark) {
+			background-color: $__secondary_dark;
+		}
 		border-radius: 0.5rem;
 		display: flex;
 		flex-direction: column;
@@ -53,8 +56,6 @@ const { blockTitle } = Astro.props;
 
 	@media screen and (min-width: 768px) {
 		.footer__newsletter {
-			--animation-opts: 0.5s ease-in-out 0s 1 normal forwards;
-
 			height: 15vw;
 			padding: 0 4.5vw;
 			flex-direction: row;
@@ -73,6 +74,8 @@ const { blockTitle } = Astro.props;
 		}
 
 		.footer__newsletter {
+			--animation-opts: 0.5s ease-in-out 0s 1 normal forwards;
+
 			.footer__newsletter_slogan {
 				animation: translate-y-default var(--animation-opts);
 			}

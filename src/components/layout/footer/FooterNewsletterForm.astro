@@ -29,7 +29,10 @@ const { class: subscribe__btn_span, ...rest } = Astro.props;
 				content: '';
 				height: 1px;
 				width: 100%;
-				background-color: $__secondary;
+				background-color: $__primary;
+				@container style(--theme: dark) {
+					color: $__secondary_dark;
+				}
 				position: absolute;
 				bottom: 0.15rem;
 				left: 0;
@@ -43,7 +46,7 @@ const { class: subscribe__btn_span, ...rest } = Astro.props;
 			border-radius: 0.25rem;
 
 			&::placeholder {
-				color: $__tertiary;
+				color: $__primary;
 			}
 			&:focus {
 				border: 1px solid $__tertiary;
