@@ -22,7 +22,8 @@ module.exports = {
 		'import/newline-after-import': 'error',
 		'import/no-duplicates': 'error',
 		'no-empty-function': 'off',
-		'@typescript-eslint/no-empty-function': 'off'
+		'@typescript-eslint/no-empty-function': 'off',
+		'no-undef': 0
 	},
 	overrides: [
 		{

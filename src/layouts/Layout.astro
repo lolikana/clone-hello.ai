@@ -17,6 +17,7 @@ import Header from '@components/layout/Header.astro';
 		<Header />
 		<main>
 			<div class="section-line top-line"></div>
+			<div class="section-line left"></div>
 			<slot />
 		</main>
 	</body>
@@ -24,13 +25,15 @@ import Header from '@components/layout/Header.astro';
 </html>
 
 <style lang="scss">
-	.section-line::after {
+	.section-line.top-line::after,
+	.section-line.left::after {
 		top: 0;
 		opacity: 1;
 		transition: top 750ms ease;
 	}
 
-	.section-line.out::after {
+	.section-line.top-line.out::after,
+	.section-line.left.out::after {
 		opacity: 0;
 		top: -$__header_heightMobile;
 		@include mq('md') {
@@ -46,11 +49,17 @@ import Header from '@components/layout/Header.astro';
 			top 750ms ease,
 			1750ms opacity 1ms ease;
 	}
+
+	.section-line.left.out::after {
+		opacity: 1;
+	}
 </style>
 
 <script>
 	const header = document.querySelector('header') as HTMLElement;
-	const sectionLine = document.querySelector('.section-line.top-line') as HTMLDivElement;
+	const sectionLine = document.querySelectorAll(
+		'.section-line'
+	) as NodeListOf<HTMLDivElement>;
 	const scrollY = window.scrollY;
 
 	scrollY ? header.classList.add('out') : null;
@@ -59,8 +68,10 @@ import Header from '@components/layout/Header.astro';
 		const scrollY = window.scrollY;
 		if (scrollY >= 20) return;
 		scrollY === 0
-			? sectionLine.classList.remove('out')
-			: sectionLine.classList.add('out');
+			? sectionLine.forEach(line => line.classList.remove('out'))
+			: sectionLine.forEach(line => line.classList.add('out'));
 		scrollY === 0 ? header.classList.remove('out') : header.classList.add('out');
 	});
 </script>
+
+<style lang="scss"></style>
